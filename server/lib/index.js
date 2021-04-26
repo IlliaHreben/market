@@ -8,7 +8,9 @@ const config = require('./config')
 
 const api = express.Router()
   .post('/products', asyncHandler(controllers.products.create))
+  .get('/products', asyncHandler(controllers.products.list))
   .post('/categories', asyncHandler(controllers.categories.create))
+  .get('/categories', asyncHandler(controllers.categories.list))
   .use(handleError)
 
 const app = express()

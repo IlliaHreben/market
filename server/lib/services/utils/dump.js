@@ -1,6 +1,9 @@
 const dumpProduct = product => {
-  const included = {}
-  if (product.Category) included.category = dumpCategory(product.Category)
+  const links = {}
+  if (product.Category) links.category = {
+    id: product.categoryId,
+    type: 'category'
+  }
 
   return {
     id: product.id,
@@ -8,18 +11,19 @@ const dumpProduct = product => {
     description: product.description,
     price: product.price,
     quantity: product.quantity,
-    ...included
+    links
   }
 }
 
 const dumpCategory = category => {
-  const included = {}
-  if (category.Products) included.products = category.Products.map(dumpProduct)
+  const links = {}
+  if (category.Products) links.products = category.Products
+    .map(product => ({ id: product.id, type: 'product' }))
 
   return {
     id: category.id,
     name: category.name,
-    ...included
+    links
   }
 }
 

@@ -20,6 +20,45 @@ LIVR.Validator.registerAliasedDefaultRule({
   error: 'WRONG_PAGE_SIZE'
 })
 
-LIVR.Validator.registerDefaultRules(extraRules)
+LIVR.Validator.registerAliasedDefaultRule({
+  name: 'order',
+  rules: ['trim', 'to_uc', { 'one_of': ['ASC', 'DESC'] }],
+  error: 'WRONG_ORDER'
+})
+
+const defaultRules = {
+  ...extraRules,
+  'list_or_one'(rule) {
+    return value => {
+      if (value === undefined || value === null || value === '') return;
+      const validator = new LIVR.Validator({
+        value: {
+          'or': [rule, { 'list_of': rule }]
+        }
+      });
+
+      if (!validator.validate({ value })) {
+        return validator.getErrors().value;
+      }
+
+      return;
+    };
+  },
+  'to_array'() {
+    return (value, params, outputArr) => {
+      if (value === undefined || value === null || value === '') return;
+
+      if (!Array.isArray(value)) {
+        outputArr.push([value]);
+
+        return;
+      }
+
+      return;
+    };
+  }
+}
+
+LIVR.Validator.registerDefaultRules(defaultRules)
 
 module.exports = LIVR
