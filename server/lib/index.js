@@ -7,12 +7,19 @@ const { handleError } = require('./controllers/middleware')
 const config = require('./config')
 
 const api = express.Router()
+
+  // Products
   .post('/products', asyncHandler(controllers.products.create))
   .get('/products', asyncHandler(controllers.products.list))
   .get('/products/:id', asyncHandler(controllers.products.show))
+  .delete('/products/:id', asyncHandler(controllers.products.delete))
+
+  // Categories
   .post('/categories', asyncHandler(controllers.categories.create))
   .get('/categories', asyncHandler(controllers.categories.list))
   .get('/categories/:id', asyncHandler(controllers.categories.show))
+  .delete('/categories/:id', asyncHandler(controllers.categories.delete))
+
   .use(handleError)
 
 const app = express()
