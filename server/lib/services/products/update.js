@@ -1,16 +1,21 @@
 const { dumpProduct } = require('../utils/dump')
-const { Product } = require('../../model')
+const { Product }     = require('../../model')
+const throwError      = require('../errors')
 
 const validatorRules = {
-  name        : [ 'required', 'shortly_text' ],
+  id          : [ 'required', 'uuid' ],
   description : [ 'required', { min_length: 3 }, { max_length: 500 } ],
   price       : [ 'required', 'string' ], // TODO validation only numbers
   quantity    : [ 'required', 'positive_integer' ],
   categoryId  : [ 'required', 'uuid' ]
 }
 
-const execute = async (data, { transaction }) => {
-  const product = await Product.create(data, { transaction })
+const execute = async ({ id, ...data }, { transaction }) => {
+  const product = await Product.findOne({ where: { id } }, { transaction })
+
+  if (!product) throwError('WRONG_ID', 'product')
+
+  await product.update(data, { transaction })
 
   return dumpProduct(product)
 }

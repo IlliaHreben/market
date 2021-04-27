@@ -7,11 +7,11 @@ const handleError = async (err, _, res, __) => {
     res
       .status(400)
       .send({
-        ok: false,
-        error: {
-          code: err.code,
-          message: err.message,
-          fields: err.fields
+        ok    : false,
+        error : {
+          code    : err.code,
+          message : err.message,
+          fields  : err.fields
         }
       })
   } else {
@@ -19,10 +19,10 @@ const handleError = async (err, _, res, __) => {
     res
       .status(500)
       .send({
-        ok: false,
-        error: {
-          code: 'UNKNOWN_ERROR',
-          message: 'Unknown error'
+        ok    : false,
+        error : {
+          code    : 'UNKNOWN_ERROR',
+          message : 'Unknown error'
         }
       })
   }

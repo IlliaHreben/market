@@ -1,7 +1,7 @@
 const { DMX, sequelize } = require('../model')
 const throwError = require('./errors')
 
-async function run(callback) {
+async function run (callback) {
   const transaction = await sequelize.transaction()
   try {
     const result = await callback(transaction)
@@ -20,8 +20,14 @@ async function run(callback) {
 
 const rules = {
   pagination: {
-    limit: ['positive_integer', { 'default': 10 }],
-    offset: ['integer', { 'min_number': 0 }, { 'default': 0 }]
+    limit  : [ 'positive_integer', { default: 10 } ],
+    offset : [ 'integer', { min_number: 0 }, { default: 0 } ]
+  },
+  user: {
+    email      : [ 'required', 'email' ],
+    firstName  : [ 'required', 'shortly_text' ],
+    secondName : [ 'required', 'shortly_text' ],
+    password   : [ 'required', 'positive_integer' ]
   }
 }
 

@@ -1,10 +1,10 @@
-const express = require('express')
+const express      = require('express')
 const asyncHandler = require('express-async-handler')
 
-const { sequelize } = require('./model')
-const controllers = require('./controllers')
+const { sequelize }   = require('./model')
+const controllers     = require('./controllers')
 const { handleError } = require('./controllers/middleware')
-const config = require('./config')
+const config          = require('./config')
 
 const api = express.Router()
 
@@ -13,29 +13,31 @@ const api = express.Router()
   .get('/products', asyncHandler(controllers.products.list))
   .get('/products/:id', asyncHandler(controllers.products.show))
   .delete('/products/:id', asyncHandler(controllers.products.delete))
+  .patch('/products/:id', asyncHandler(controllers.products.update))
 
   // Categories
   .post('/categories', asyncHandler(controllers.categories.create))
   .get('/categories', asyncHandler(controllers.categories.list))
   .get('/categories/:id', asyncHandler(controllers.categories.show))
   .delete('/categories/:id', asyncHandler(controllers.categories.delete))
+  .patch('/categories/:id', asyncHandler(controllers.categories.update))
 
   .use(handleError)
 
 const app = express()
   .use(express.urlencoded({ extended: true }))
   .use(express.json({
-    limit: 1000,
-    verify: (req, res, buf) => {
+    limit  : 1000,
+    verify : (req, res, buf) => {
       try {
         JSON.parse(buf)
       } catch (e) {
         res.status(400)
         res.send({
-          ok: false,
-          error: {
-            code: 'BROKEN_JSON',
-            message: 'Please, verify your json'
+          ok    : false,
+          error : {
+            code    : 'BROKEN_JSON',
+            message : 'Please, verify your json'
           }
         })
         throw new Error('BROKEN_JSON')

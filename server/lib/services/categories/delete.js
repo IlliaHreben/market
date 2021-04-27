@@ -1,20 +1,20 @@
 const { Category } = require('../../model')
+const throwError   = require('../errors')
 
-const ApiError = require('../ApiError')
 const { dumpCategory } = require('../utils/dump')
 
 const validatorRules = {
-  id: ['required', 'uuid']
+  id: [ 'required', 'uuid' ]
 }
 
 const execute = async ({ id }, { transaction }) => {
   const category = await Category.findOne({ where: { id } })
 
+  if (!category) throwError('WRONG_ID', 'category')
+
   await category.destroy({ transaction })
 
   return dumpCategory(category)
-
-  // if (!quantity) throw new ApiError({ code: 'FILM_NOT_FOUND', message: 'No movie found for this ID' }) // quantity = 0
 }
 
 module.exports = { execute, validatorRules }

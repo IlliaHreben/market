@@ -2,7 +2,7 @@ const { dumpCategory } = require('../utils/dump')
 const { Category } = require('../../model')
 
 const validatorRules = {
-  name: ['required', 'shortly_text']
+  name: [ 'required', 'shortly_text' ]
 }
 
 const execute = async (data, { transaction }) => {

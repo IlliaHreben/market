@@ -2,33 +2,28 @@
 const X = require('./ApiError')
 
 const COMMON_ERRORS = (data = '') => ({
-  NOT_EXIST: {
-    code: 'NOT_EXIST',
-    fields: {
-      [data]: 'NOT_EXIST'
-    }
-  },
   ALREADY_EXIST: {
-    code: 'ALREADY_EXIST',
-    fields: {
+    code   : 'ALREADY_EXIST',
+    fields : {
       [data]: 'ALREADY_EXIST'
     }
   },
   WRONG_ID: {
-    code: 'WRONG_ID',
-    fields: {
+    code    : 'WRONG_ID',
+    message : `${data} with this id not exist`,
+    fields  : {
       [data || 'id']: 'WRONG_ID'
     }
   },
   PERMISSION_DENIED: {
-    code: 'PERMISSION_DENIED',
-    fields: {
+    code   : 'PERMISSION_DENIED',
+    fields : {
       user: 'PERMISSION_DENIED'
     }
   },
   BROKEN_SIGNATURE: {
-    code: 'NOT_ALLOWED',
-    fields: {
+    code   : 'NOT_ALLOWED',
+    fields : {
       signature: 'BROKEN_SIGNATURE'
     }
   }
@@ -36,14 +31,14 @@ const COMMON_ERRORS = (data = '') => ({
 
 const USER_ERRORS = () => ({
   GUESSABLE_PASSWORD: {
-    code: 'GUESSABLE_PASSWORD',
-    fields: {
+    code   : 'GUESSABLE_PASSWORD',
+    fields : {
       confirmPassword: 'GUESSABLE_PASSWORD'
     }
   },
   MYSELF: {
-    code: 'NOT_ALLOWED',
-    fields: {
+    code   : 'NOT_ALLOWED',
+    fields : {
       user: 'MYSELF'
     }
   }
@@ -58,8 +53,8 @@ function throwError (type, data) {
   switch (type) {
     case 'NOT_EXIST':
       throw new X({
-        code: 'NOT_EXIST',
-        fields: {
+        code   : 'NOT_EXIST',
+        fields : {
           entity: 'NOT_EXIST'
         }
       })
