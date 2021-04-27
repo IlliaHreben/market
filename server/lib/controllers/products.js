@@ -1,8 +1,8 @@
 const runService = require('../services/runService')
 const createProduct = runService(require('../services/products/create'))
 const listProducts = runService(require('../services/products/list'))
+const showProduct = runService(require('../services/products/show'))
 // const deleteProduct = runService(require('../services/products/delete'))
-// const getInfoProduct = runService(require('../services/products/info'))
 
 const create = async (req, res) => {
   console.log(req.body)
@@ -20,13 +20,13 @@ const create = async (req, res) => {
 //   })
 // }
 
-// const info = async (req, res) => {
-//   const product = await getInfoProduct(req.query)
-//   res.send({
-//     ok: true,
-//     data: product
-//   })
-// }
+const show = async (req, res) => {
+  const product = await showProduct({ ...req.query, ...req.params })
+  res.send({
+    ok: true,
+    data: product
+  })
+}
 
 const list = async (req, res) => {
   const products = await listProducts(req.query)
@@ -36,4 +36,4 @@ const list = async (req, res) => {
   })
 }
 
-module.exports = { create, list /* remove, info */ }
+module.exports = { create, list, show }

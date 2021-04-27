@@ -1,4 +1,4 @@
-const run = require('./Base')
+const { run } = require('./Base')
 const LIVR = require('./validator')
 const ApiError = require('./ApiError')
 

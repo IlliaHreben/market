@@ -1,8 +1,7 @@
 const runService = require('../services/runService')
 const createCategory = runService(require('../services/categories/create'))
 const listCategories = runService(require('../services/categories/list'))
-// const deleteProduct = runService(require('../services/categories/delete'))
-// const listProducts = runService(require('../services/categories/list'))
+const showCategory = runService(require('../services/categories/show'))
 
 const create = async (req, res) => {
   const category = await createCategory(req.body)
@@ -27,12 +26,12 @@ const list = async (req, res) => {
   })
 }
 
-// const findProducts = async (req, res) => {
-//   const categories = await listProducts(req.query)
-//   res.send({
-//     ok: true,
-//     data: categories
-//   })
-// }
+const show = async (req, res) => {
+  const category = await showCategory({ ...req.query, ...req.params })
+  res.send({
+    ok: true,
+    data: category
+  })
+}
 
-module.exports = { create, list /* remove, findProducts */ }
+module.exports = { create, list, show /* remove, findProducts */ }

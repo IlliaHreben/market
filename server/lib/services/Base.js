@@ -2,7 +2,7 @@
 const { DMX } = require('../model')
 const throwError = require('./errors')
 
-async function run (callback) {
+async function run(callback) {
   const transaction = await require('../model').sequelize.transaction()
   try {
     const result = await callback(transaction)
@@ -16,4 +16,11 @@ async function run (callback) {
   }
 }
 
-module.exports = run
+const rules = {
+  pagination: {
+    limit: ['positive_integer', { 'default': 10 }],
+    offset: ['integer', { 'min_number': 0 }, { 'default': 0 }]
+  }
+}
+
+module.exports = { run, rules }
