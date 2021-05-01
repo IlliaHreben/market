@@ -6,16 +6,9 @@ const linkedDump = {
   Products : dumpProduct
 }
 
-const getIncludes = Model => {
-  return Object.keys(Model.associations)
-    .map(association => association.toLowerCase())
-}
-
-const getAttributes = Model => Object.keys(Model.rawAttributes)
-
 const includeLinked = (instances, includes = []) => {
   if (!Array.isArray(instances)) instances = [ instances ]
-  const linked = includes.reduce((acc, modelName) => ({ ...acc, [modelName]: [] }))
+  const linked = includes.reduce((acc, modelName) => ({ ...acc, [modelName]: [] }), {})
 
   instances.forEach(instance => includes.forEach(modelName => {
     let includedInstances = instance[modelName]
@@ -43,7 +36,7 @@ const queryBuilder = (searchFields = []) => ({
 
   Object.keys(filters)
     .filter(i => filters[i])
-    .forEach(filter => filters[filter])
+    .forEach(filter => query[filter] = filters[filter])
 
   return query
 }

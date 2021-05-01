@@ -79,12 +79,4 @@ Category.hasMany(Product, {
   onUpdate : 'cascade'
 })
 
-class DMX extends Error {
-  constructor ({ message, code, fields }) {
-    super(message || code)
-    this.code = code
-    this.fields = fields
-  }
-}
-
-module.exports = { DMX, Category, Product, User, sequelize }
+module.exports = { Category, Product, User, sequelize }

@@ -1,5 +1,6 @@
-const { dumpProduct } = require('../utils/dump')
-const { Product } = require('../../model')
+const { dumpProduct }       = require('../utils/dump')
+const { Product, Category } = require('../../model')
+const throwError            = require('../errors')
 
 const validatorRules = {
   name        : [ 'required', 'shortly_text' ],
@@ -10,7 +11,13 @@ const validatorRules = {
 }
 
 const execute = async (data, { transaction }) => {
+  const category = await Category.findOne({ where: { id: data.categoryId } })
+
+  if (!category) throwError('WRONG_ID', 'category')
+
   const product = await Product.create(data, { transaction })
+
+  product.Category = category
 
   return dumpProduct(product)
 }

@@ -1,10 +1,8 @@
 const dumpProduct = product => {
   const links = {}
-  if (product.Category) {
-    links.category = {
-      id   : product.categoryId,
-      type : 'category'
-    }
+  links.category = {
+    id   : product.categoryId,
+    type : 'category'
   }
 
   return {

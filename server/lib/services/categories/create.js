@@ -8,7 +8,7 @@ const validatorRules = {
 const execute = async (data, { transaction }) => {
   const category = await Category.create(data, { transaction })
 
-  return dumpCategory(category)
+  return { data: dumpCategory(category) }
 }
 
 module.exports = { execute, validatorRules }

@@ -1,28 +1,39 @@
 const express      = require('express')
-const asyncHandler = require('express-async-handler')
+const aHandler = require('express-async-handler')
 
-const { sequelize }   = require('./model')
-const controllers     = require('./controllers')
-const { handleError } = require('./controllers/middleware')
-const config          = require('./config')
+const { sequelize } = require('./model')
+const controllers   = require('./controllers')
+const config = require('./config')
+
+const { check:checkSession } = controllers.sessions
 
 const api = express.Router()
 
+  // Sessions
+  .post('/sessions', controllers.sessions.create)
+
+  // Users
+  .post('/users', aHandler(controllers.users.create))
+  .get('/users', checkSession, aHandler(controllers.users.list))
+  .get('/users/:id', checkSession, aHandler(controllers.users.show))
+  .delete('/users/:id', checkSession, aHandler(controllers.users.delete))
+  .patch('/users/:id', checkSession, aHandler(controllers.users.update))
+
   // Products
-  .post('/products', asyncHandler(controllers.products.create))
-  .get('/products', asyncHandler(controllers.products.list))
-  .get('/products/:id', asyncHandler(controllers.products.show))
-  .delete('/products/:id', asyncHandler(controllers.products.delete))
-  .patch('/products/:id', asyncHandler(controllers.products.update))
+  .post('/products', checkSession, aHandler(controllers.products.create))
+  .get('/products', checkSession, aHandler(controllers.products.list))
+  .get('/products/:id', checkSession, aHandler(controllers.products.show))
+  .delete('/products/:id', checkSession, aHandler(controllers.products.delete))
+  .patch('/products/:id', checkSession, aHandler(controllers.products.update))
 
   // Categories
-  .post('/categories', asyncHandler(controllers.categories.create))
-  .get('/categories', asyncHandler(controllers.categories.list))
-  .get('/categories/:id', asyncHandler(controllers.categories.show))
-  .delete('/categories/:id', asyncHandler(controllers.categories.delete))
-  .patch('/categories/:id', asyncHandler(controllers.categories.update))
+  .post('/categories', aHandler(controllers.categories.create))
+  .get('/categories', aHandler(controllers.categories.list))
+  .get('/categories/:id', aHandler(controllers.categories.show))
+  .delete('/categories/:id', aHandler(controllers.categories.delete))
+  .patch('/categories/:id', aHandler(controllers.categories.update))
 
-  .use(handleError)
+  .use(controllers.middleware.handleError)
 
 const app = express()
   .use(express.urlencoded({ extended: true }))

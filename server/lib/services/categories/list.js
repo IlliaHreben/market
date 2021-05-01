@@ -21,7 +21,7 @@ const validatorRules = {
   ...rules.pagination
 }
 
-const execute = async ({ search, sort, order, include, ...filters }) => {
+const execute = async ({ search, sort, order, include, limit, offset, ...filters }) => {
   const query    = getQuery({ search })
   const included = includeQuery(include)
 
@@ -30,6 +30,8 @@ const execute = async ({ search, sort, order, include, ...filters }) => {
       where   : query,
       order   : [ [ sort, order ] ],
       include : included,
+      limit,
+      offset,
       ...filters
     }),
     Category.count({ where: query }),
@@ -44,8 +46,8 @@ const execute = async ({ search, sort, order, include, ...filters }) => {
     meta : {
       totalCount,
       filteredCount,
-      limit  : filters.limit,
-      offset : filters.offset
+      limit,
+      offset
     }
   }
 }

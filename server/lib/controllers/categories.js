@@ -1,49 +1,15 @@
-const runService = require('../services/runService')
+const makeServiceRunner = require('./makeServiceRunner')
 
-const createCategory = runService(require('../services/categories/create'))
-const listCategories = runService(require('../services/categories/list'))
-const showCategory   = runService(require('../services/categories/show'))
-const deleteCategory = runService(require('../services/categories/delete'))
-const updateCategory = runService(require('../services/categories/update'))
+const createCategory = require('../services/categories/create')
+const listCategories = require('../services/categories/list')
+const showCategory   = require('../services/categories/show')
+const deleteCategory = require('../services/categories/delete')
+const updateCategory = require('../services/categories/update')
 
-const create = async (req, res) => {
-  const category = await createCategory(req.body)
-  res.send({
-    ok   : true,
-    data : category
-  })
+module.exports = {
+  create : makeServiceRunner(createCategory),
+  list   : makeServiceRunner(listCategories, req => ({ ...req.query })),
+  show   : makeServiceRunner(showCategory, req => ({ ...req.query, ...req.params })),
+  update : makeServiceRunner(updateCategory, req => ({ ...req.query, ...req.params })),
+  delete : makeServiceRunner(deleteCategory, req => ({ ...req.query, ...req.params }))
 }
-
-const remove = async (req, res) => {
-  const category = await deleteCategory({ ...req.query, ...req.params })
-  res.send({
-    ok   : true,
-    data : category
-  })
-}
-
-const list = async (req, res) => {
-  const payload = await listCategories(req.query)
-  res.send({
-    ok: true,
-    ...payload
-  })
-}
-
-const show = async (req, res) => {
-  const category = await showCategory({ ...req.query, ...req.params })
-  res.send({
-    ok   : true,
-    data : category
-  })
-}
-
-const update = async (req, res) => {
-  const category = await updateCategory({ ...req.query, ...req.params })
-  res.send({
-    ok   : true,
-    data : category
-  })
-}
-
-module.exports = { create, list, show, update, delete: remove }

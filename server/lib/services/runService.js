@@ -1,5 +1,5 @@
-const { run } = require('./Base')
-const LIVR = require('./validator')
+const { run }  = require('./Base')
+const LIVR     = require('./validator')
 const ApiError = require('./ApiError')
 
 const runService = ({ execute, validatorRules }) => {
@@ -7,10 +7,13 @@ const runService = ({ execute, validatorRules }) => {
 
   return input => {
     const validData = validator.validate(input)
-    const errors = validator.getErrors()
+    const errors    = validator.getErrors()
     if (errors) {
-      console.log(errors)
-      throw new ApiError({ code: 'FORMAT_ERROR', message: 'Invalid format' })
+      throw new ApiError({
+        code    : 'FORMAT_ERROR',
+        message : 'Invalid format',
+        fields  : errors
+      })
     }
     return run(transaction => execute(validData, { transaction }))
   }

@@ -1,5 +1,4 @@
-const { DMX, sequelize } = require('../model')
-const throwError = require('./errors')
+const { sequelize } = require('../model')
 
 async function run (callback) {
   const transaction = await sequelize.transaction()
@@ -11,9 +10,9 @@ async function run (callback) {
     return result
   } catch (error) {
     await transaction.rollback()
-    console.log(error)
+    console.error(error)
 
-    if (error instanceof DMX) throwError(DMX)
+    // if (error instanceof DMX) throwError(DMX)
     throw error
   }
 }
@@ -27,7 +26,7 @@ const rules = {
     email      : [ 'required', 'email' ],
     firstName  : [ 'required', 'shortly_text' ],
     secondName : [ 'required', 'shortly_text' ],
-    password   : [ 'required', 'positive_integer' ]
+    password   : [ 'required', 'string', { min_length: 6 } ]
   }
 }
 
