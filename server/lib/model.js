@@ -19,7 +19,7 @@ const Product = sequelize.define('Products', {
   id          : { type: Sequelize.UUID, defaultValue: Sequelize.UUIDV4, primaryKey: true },
   name        : { type: Sequelize.STRING, allowNull: false },
   description : { type: Sequelize.STRING, allowNull: false },
-  price       : { type: Sequelize.STRING, allowNull: false },
+  price       : { type: Sequelize.INTEGER, allowNull: false },
   quantity    : { type: Sequelize.INTEGER, allowNull: false },
   categoryId  : { type: Sequelize.UUID, references: { model: 'Categories', key: 'id' }, allowNull: false }
 }, {

@@ -1,0 +1,35 @@
+[
+    {
+        "id"               : "dc733800-68e3-4e9f-b7dc-75515ae0b624",
+        "email"            : "Alon@mail.com",
+        "firstName"        : "Alon",
+        "secondName"       : "Smith",
+        "passwordHash"     : "$2a$04$m/kigZ0S7Pr6Ytec/FSGqe8cfXI4MQjox375LAp3H/8ptTpPXj/ee",
+        "password"         : "AlonSmith",
+        "sessionStartedAt" : null,
+        "createdAt"        : "2021-05-04T14:22:17.000Z",
+        "updatedAt"        : "2021-05-04T14:22:54.000Z"
+    },
+    {
+        "id"               : "85486372-28fa-4e75-9cc7-f79665adf4f3",
+        "email"            : "muom@gmail.com",
+        "firstName"        : "Illia",
+        "secondName"       : "Hreben",
+        "passwordHash"     : "$2a$04$M44ABMMFCfiuejUhXpQtX.lr476pNApH8TJHMS.KXBAmO3B10/.tG",
+        "password"         : "qwerty15",
+        "sessionStartedAt" : null,
+        "createdAt"        : "2021-05-04T14:22:46.000Z",
+        "updatedAt"        : "2021-05-04T14:22:46.000Z"
+    },
+    {
+        "id"               : "cf5c5bf9-30b9-461c-9a71-61202acfbbcf",
+        "email"            : "Alon15@mail.com",
+        "firstName"        : "Alon",
+        "secondName"       : "Smith",
+        "passwordHash"     : "$2a$04$JCU3/UMJDfFEmeiW35f2AeWNI2MvHm1ObVxUkN4p7aTGnAv6Wgi3S",
+        "password"         : "AlonSmith",
+        "sessionStartedAt" : null,
+        "createdAt"        : "2021-05-02T09:54:58.000Z",
+        "updatedAt"        : "2021-05-04T14:21:52.000Z"
+    }
+]

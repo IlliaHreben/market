@@ -1,9 +1,8 @@
-const express      = require('express')
-const aHandler = require('express-async-handler')
+const express = require('express')
 
 const { sequelize } = require('./model')
 const controllers   = require('./controllers')
-const config = require('./config')
+const config        = require('./config')
 
 const { check:checkSession } = controllers.sessions
 
@@ -13,25 +12,23 @@ const api = express.Router()
   .post('/sessions', controllers.sessions.create)
 
   // Users
-  .post('/users', aHandler(controllers.users.create))
-  .get('/users', checkSession, aHandler(controllers.users.list))
-  .get('/users/:id', checkSession, aHandler(controllers.users.show))
-  .delete('/users/:id', checkSession, aHandler(controllers.users.delete))
-  .patch('/users/:id', checkSession, aHandler(controllers.users.update))
+  .post('/users', controllers.users.create)
+  .get('/users', checkSession, controllers.users.list)
+  .get('/users/:id', checkSession, controllers.users.show)
 
   // Products
-  .post('/products', checkSession, aHandler(controllers.products.create))
-  .get('/products', checkSession, aHandler(controllers.products.list))
-  .get('/products/:id', checkSession, aHandler(controllers.products.show))
-  .delete('/products/:id', checkSession, aHandler(controllers.products.delete))
-  .patch('/products/:id', checkSession, aHandler(controllers.products.update))
+  .post('/products', checkSession, controllers.products.create)
+  .get('/products', checkSession, controllers.products.list)
+  .get('/products/:id', checkSession, controllers.products.show)
+  .delete('/products/:id', checkSession, controllers.products.delete)
+  .patch('/products/:id', checkSession, controllers.products.update)
 
   // Categories
-  .post('/categories', aHandler(controllers.categories.create))
-  .get('/categories', aHandler(controllers.categories.list))
-  .get('/categories/:id', aHandler(controllers.categories.show))
-  .delete('/categories/:id', aHandler(controllers.categories.delete))
-  .patch('/categories/:id', aHandler(controllers.categories.update))
+  .post('/categories', checkSession, controllers.categories.create)
+  .get('/categories', checkSession, controllers.categories.list)
+  .get('/categories/:id', checkSession, controllers.categories.show)
+  .delete('/categories/:id', checkSession, controllers.categories.delete)
+  .patch('/categories/:id', checkSession, controllers.categories.update)
 
   .use(controllers.middleware.handleError)
 
@@ -68,7 +65,7 @@ const listenPort = port => {
 const startApp = async port => {
   await sequelize.sync({ force: config.db.forceReset })
   await listenPort(port)
-  console.log(`Succesfully started on port ${port}.`)
+  console.log(`Successfully started on port ${port}.`)
 }
 
 startApp(config.app.port)

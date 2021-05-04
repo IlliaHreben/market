@@ -5,8 +5,8 @@ const throwError      = require('../errors')
 const validatorRules = {
   id          : [ 'required', 'uuid' ],
   description : [ 'required', { min_length: 3 }, { max_length: 500 } ],
-  price       : [ 'required', 'string' ], // TODO validation only numbers
-  quantity    : [ 'required', 'positive_integer' ],
+  price       : [ 'required', 'positive_decimal' ],
+  quantity    : [ 'required', 'positive_decimal' ],
   categoryId  : [ 'required', 'uuid' ]
 }
 

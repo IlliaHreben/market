@@ -1,0 +1,72 @@
+[
+    {
+        "id"          : "f8180aa7-49ae-4c64-964a-5c76b2c149a3",
+        "name"        : "Name",
+        "description" : "Description",
+        "price"       : 1,
+        "quantity"    : 1000,
+        "categoryId"  : "c25f294b-8061-4989-ab0a-5c43478150f1",
+        "createdAt"   : "2021-05-02T10:07:40.000Z",
+        "updatedAt"   : "2021-05-02T10:07:40.000Z"
+    },
+    {
+        "id"          : "f1419817-bc5f-4ea0-8b1e-37cde1524b2a",
+        "name"        : "Salat",
+        "description" : "Polezniy",
+        "price"       : 1,
+        "quantity"    : 1000,
+        "categoryId"  : "47e7517e-d9a6-44a6-a4bd-3ea6414611e2",
+        "createdAt"   : "2021-05-02T10:05:22.000Z",
+        "updatedAt"   : "2021-05-02T10:05:22.000Z"
+    },
+    {
+        "id"          : "cf76a8f6-162f-46c2-9193-76296726ce9f",
+        "name"        : "Bat",
+        "description" : "Zabivaiy golovoy",
+        "price"       : 1000,
+        "quantity"    : 1000,
+        "categoryId"  : "bc6cb18a-9223-492b-92e1-1898812e61d3",
+        "createdAt"   : "2021-05-02T09:59:49.000Z",
+        "updatedAt"   : "2021-05-02T09:59:49.000Z"
+    },
+    {
+        "id"          : "cca81d98-36c6-4959-a2e1-675b24936520",
+        "name"        : "Hat",
+        "description" : "Nadevaiy na golovy",
+        "price"       : 1000,
+        "quantity"    : 1000,
+        "categoryId"  : "ef8bab59-2311-450a-85ed-82824c541876",
+        "createdAt"   : "2021-05-02T10:01:18.000Z",
+        "updatedAt"   : "2021-05-02T10:01:18.000Z"
+    },
+    {
+        "id"          : "7cea649d-8c44-435d-baa4-595bfe63272b",
+        "name"        : "Gde?",
+        "description" : "What",
+        "price"       : 1,
+        "quantity"    : 1000,
+        "categoryId"  : "c25f294b-8061-4989-ab0a-5c43478150f1",
+        "createdAt"   : "2021-05-02T10:07:20.000Z",
+        "updatedAt"   : "2021-05-02T10:07:20.000Z"
+    },
+    {
+        "id"          : "74385390-da92-4e76-a370-b83248ebf811",
+        "name"        : "IQOS",
+        "description" : "Curi i ymri",
+        "price"       : 1,
+        "quantity"    : 1000,
+        "categoryId"  : "60e48fda-8325-4538-b1a8-2ae704e3fd7d",
+        "createdAt"   : "2021-05-02T10:02:48.000Z",
+        "updatedAt"   : "2021-05-02T10:02:48.000Z"
+    },
+    {
+        "id"          : "27c018d2-df3c-46c7-90ec-688785f54a8b",
+        "name"        : "What",
+        "description" : "Gde?",
+        "price"       : 1,
+        "quantity"    : 1000,
+        "categoryId"  : "c25f294b-8061-4989-ab0a-5c43478150f1",
+        "createdAt"   : "2021-05-02T10:07:02.000Z",
+        "updatedAt"   : "2021-05-02T10:07:02.000Z"
+    }
+]

@@ -1,11 +1,13 @@
 module.exports = {
   env: {
-    browser  : false,
-    commonjs : true,
-    es2021   : true
+    browser        : false,
+    commonjs       : true,
+    es2021         : true,
+    'jest/globals' : true
   },
   extends: [
-    'standard'
+    'standard',
+    'plugin:jest/recommended'
   ],
   parserOptions: {
     ecmaVersion: 12
@@ -39,13 +41,18 @@ module.exports = {
         ImportDeclaration  : true
       }
     } ],
-    'object-curly-spacing'  : [ 'error', 'always' ],
-    'array-bracket-spacing' : [ 'error', 'always' ]
-    // 'jest/no-disabled-tests': 'warn',
-    // 'jest/no-focused-tests': 'error',
-    // 'jest/no-identical-title': 'error',
-    // 'jest/prefer-to-have-length': 'warn',
-    // 'jest/valid-expect': 'error'
+    'object-curly-spacing'       : [ 'error', 'always' ],
+    'array-bracket-spacing'      : [ 'error', 'always' ],
+    'jest/no-disabled-tests'     : 'warn',
+    'jest/no-focused-tests'      : 'error',
+    'jest/no-identical-title'    : 'error',
+    'jest/prefer-to-have-length' : 'warn',
+    'jest/valid-expect'          : 'error'
+  },
+  plugins  : [ 'jest' ],
+  settings : {
+    jest: {
+      version: 26
+    }
   }
-  // plugins: ['jest']
 }
