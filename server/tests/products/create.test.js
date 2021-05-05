@@ -1,4 +1,3 @@
-// const fetch = require('node-fetch')
 const factory = require('../testFactory')
 const { sequelize } = require('../../lib/model')
 const categories = require('../fixtures/categories.json')
@@ -6,8 +5,9 @@ const categories = require('../fixtures/categories.json')
 let createProduct
 
 beforeAll(async () => {
-  await factory.setDefaultUsers()
   await sequelize.sync({ force: true })
+  await factory.setDefaultCategories()
+  await factory.setDefaultUsers()
   const token = await factory.authUser()
 
   createProduct = requestBody => factory.create('/products', token, requestBody)

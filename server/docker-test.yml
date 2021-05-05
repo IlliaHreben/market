@@ -4,6 +4,6 @@ services:
   db:
     image: mysql:latest
     env_file:
-      - .env.test
+      - ./.env.test
     ports:
       - 3306:3306

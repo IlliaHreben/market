@@ -1,3 +1,4 @@
+const { URLSearchParams } = require('url')
 const fetch             = require('node-fetch')
 const users             = require('./fixtures/users.json')
 const products          = require('./fixtures/products.json')
@@ -53,12 +54,70 @@ const create = async (route, token, requestBody) => {
   return body
 }
 
+const deleteMethod = async (route, token, requestBody) => {
+  const result = await fetch(`http://localhost:${port}/api${route}`, {
+    method  : 'DELETE',
+    ...requestBody ? { body: JSON.stringify(requestBody) } : {},
+    headers : {
+      'Content-Type' : 'application/json',
+      Authorization  : token
+    }
+  })
+
+  const body = await result.json()
+  return body
+}
+
+const list = async (route, token, query) => {
+  const result = await fetch(`http://localhost:${port}/api${route}?` + new URLSearchParams(query), {
+    method  : 'GET',
+    headers : {
+      'Content-Type' : 'application/json',
+      Authorization  : token
+    }
+  })
+
+  const body = await result.json()
+  return body
+}
+
+const show = async (route, token, query) => {
+  const result = await fetch(`http://localhost:${port}/api${route}?` + new URLSearchParams(query), {
+    method  : 'GET',
+    headers : {
+      'Content-Type' : 'application/json',
+      Authorization  : token
+    }
+  })
+
+  const body = await result.json()
+  return body
+}
+
+const update = async (route, token, requestBody) => {
+  const result = await fetch(`http://localhost:${port}/api${route}`, {
+    method  : 'PATCH',
+    body    : JSON.stringify(requestBody),
+    headers : {
+      'Content-Type' : 'application/json',
+      Authorization  : token
+    }
+  })
+
+  const body = await result.json()
+  return body
+}
+
 module.exports = {
   setDefaultUsers,
   setDefaultProducts,
   setDefaultCategories,
 
   create,
+  list,
+  show,
+  update,
+  delete: deleteMethod,
 
   authUser,
 

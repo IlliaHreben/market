@@ -14,7 +14,7 @@ const execute = async ({ id }, { transaction }) => {
 
   await category.destroy({ transaction })
 
-  return dumpCategory(category)
+  return { data: dumpCategory(category) }
 }
 
 module.exports = { execute, validatorRules }

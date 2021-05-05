@@ -14,7 +14,7 @@ const execute = async ({ id, name }, { transaction }) => {
 
   await category.update({ name }, { transaction })
 
-  return dumpCategory(category)
+  return { data: dumpCategory(category) }
 }
 
 module.exports = { execute, validatorRules }

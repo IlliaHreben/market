@@ -13,7 +13,7 @@ const execute = async ({ id }, { transaction }) => {
 
   await product.destroy({ transaction })
 
-  return dumpProduct(product)
+  return { data: dumpProduct(product) }
 }
 
 module.exports = { execute, validatorRules }

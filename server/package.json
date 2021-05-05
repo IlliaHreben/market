@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "source .env.test jest",
+    "test": "DOTENV_CONFIG_PATH='./.env.test' jest",
     "start": "nodemon -x node -r dotenv/config lib/index.js",
     "start:test": "nodemon -x node -r dotenv/config lib/index.js dotenv_config_path=.env.test",
     "lint": "eslint lib/** tests/**"

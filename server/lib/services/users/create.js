@@ -16,7 +16,7 @@ const execute = async ({ password, ...userData }, { transaction }) => {
 
   const user = await User.create({ password, ...userData }, { transaction })
 
-  return dumpUser(user)
+  return { data: dumpUser(user) }
 }
 
 module.exports = { execute, validatorRules }

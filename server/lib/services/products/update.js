@@ -17,7 +17,7 @@ const execute = async ({ id, ...data }, { transaction }) => {
 
   await product.update(data, { transaction })
 
-  return dumpProduct(product)
+  return { data: dumpProduct(product) }
 }
 
 module.exports = { execute, validatorRules }
