@@ -30,8 +30,6 @@ const execute = async ({ search, sort, order, limit, offset, ...filters }) => {
     User.count()
   ])
 
-  console.log(JSON.stringify(users, null, 4))
-
   return {
     data : users.map(dumpUser),
     meta : {

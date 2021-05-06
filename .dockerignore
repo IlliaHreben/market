@@ -1,0 +1,5 @@
+# Dependency directories
+server/node_modules
+
+server/.env
+server/.env.test

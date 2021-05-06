@@ -10,9 +10,7 @@ async function run (callback) {
     return result
   } catch (error) {
     await transaction.rollback()
-    console.error(error)
 
-    // if (error instanceof DMX) throwError(DMX)
     throw error
   }
 }

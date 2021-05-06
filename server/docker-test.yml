@@ -1,8 +1,14 @@
-version: "3.4"
+version: "3.7"
+
+networks:
+  default:
+    name: market-test
 
 services:
   db:
     image: mysql:latest
+    container_name: database
+    restart: always
     env_file:
       - ./.env.test
     ports:
